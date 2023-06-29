@@ -235,8 +235,8 @@ public class Peer extends ReceiverAdapter {
                                 System.out.println("\nArquivo adicionado com sucesso!");
 
                             } else {
-                                System.out.println("\nArquivo já existe! Dono: " + 
-                                        arquivosGlobais.get(nomeArquivo));
+                                System.out.println("\nArquivo já existe! Dono: "
+                                        + arquivosGlobais.get(nomeArquivo));
                             }
 
                             break;
@@ -550,8 +550,8 @@ public class Peer extends ReceiverAdapter {
 
                                 for (Usuario u : usuarios) {
 
-                                    if (u.getUsuario().equals(usuario) && 
-                                            u.getSenha().equals(senha)) {
+                                    if (u.getUsuario().equals(usuario)
+                                            && u.getSenha().equals(senha)) {
                                         mensagem.setStatus(Status.OK);
                                     }
 
@@ -624,8 +624,8 @@ public class Peer extends ReceiverAdapter {
 
                         // peer coordenador recebe a requisição da lista de arquivos
                         // globais para o novo peer
-                        if (this.channel.address().equals(view.getCoord()) && 
-                                !arquivosGlobais.isEmpty()) {
+                        if (this.channel.address().equals(view.getCoord())
+                                && !arquivosGlobais.isEmpty()) {
 
                             mensagem = new Mensagem("RESPOSTA_" + mensagem.getOperacao());
                             mensagem.setStatus(Status.OK);
@@ -653,7 +653,7 @@ public class Peer extends ReceiverAdapter {
                         for (String a : listaArquivos) {
 
                             String dadosArquivo[] = a.split("=");
-                            arquivosGlobais.put(dadosArquivo[0], 
+                            arquivosGlobais.put(dadosArquivo[0],
                                     stringToAddress(dadosArquivo[1]));
 
                         }
@@ -685,8 +685,7 @@ public class Peer extends ReceiverAdapter {
                         nomeArquivo = mensagem.getParam("nome_arquivo");
 
                         mensagem = new Mensagem("RESPOSTA_" + mensagem.getOperacao());
-                        mensagem.setStatus(Status.OK);
-                        mensagem.setParam("conteudo_arquivo", 
+                        mensagem.setParam("conteudo_arquivo",
                                 arquivosLocais.get(nomeArquivo));
                         channel.send(m.getSrc(), mensagem);
 
@@ -707,13 +706,12 @@ public class Peer extends ReceiverAdapter {
                         // saindo da comunicação, atualizando a lista de arquivos
                         // globais para não conter os arquivos que o peer saindo
                         // era dono  
-                        
                         HashMap<String, Address> novoArquivosGlobais = new HashMap<>();
 
                         for (String nome : arquivosGlobais.keySet()) {
 
                             if (!arquivosGlobais.get(nome).equals(m.getSrc())) {
-                                novoArquivosGlobais.put(nome, 
+                                novoArquivosGlobais.put(nome,
                                         arquivosGlobais.get(nome));
                             }
 
