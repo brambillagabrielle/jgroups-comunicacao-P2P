@@ -15,7 +15,6 @@ import java.util.logging.Logger;
 /**
  * Classe Peer representa os peers que se comunicam para no Sistema de Arquivos
  * P2P
- *
  * @author gabrielle
  */
 public class Peer extends ReceiverAdapter {
